@@ -2,9 +2,7 @@
 
 source "https://rubygems.org"
 
-git_source(:github) {|repo_name| "https://github.com/#{repo_name}" }
+git_source(:github) {|repo_name| "https://github.com/sophiecarreras/selenium_ruby_rspec" }
 
 gem 'rspec'
 gem 'selenium-webdriver'
-gem 'ruby-debug-ide'
-gem 'debase', '~> 0.2.5.beta2'

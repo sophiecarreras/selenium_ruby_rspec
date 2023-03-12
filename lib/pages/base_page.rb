@@ -2,27 +2,30 @@ require 'selenium-webdriver'
 require 'rspec'
 
 class BasePage
-  GOOGLE_URL = 'https://www.google.com/'.freeze
-  BING_URL = 'https://www.bing.com/'.freeze
+  GOOGLE_URL = 'https://www.google.com/ncr'.freeze
+  YAHOO_URL = 'https://search.yahoo.com/'.freeze
 
-  def initialize(driver, url)
+  def initialize(driver)
     @driver = driver
-    @url = url
   end
 
   def visit
-    @driver.get(@url)
+    @driver.get(url)
   end
 
   def visit_search_engine(search_engine)
     case search_engine.downcase
     when 'google'
-      visit(GOOGLE_URL)
-    when 'bing'
-      visit(BING_URL)
+      @driver.get(GOOGLE_URL)
+    when 'yahoo'
+      @driver.get(YAHOO_URL)
     else
       raise ArgumentError, "Unsupported search engine: #{search_engine}"
     end
+  end
+
+  def url
+    raise NotImplementedError, 'Subclasses should implement url method'
   end
 
   def find(locator)
